@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { PollService } from './services/poll.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -17,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MyPollsComponent } from './components/my-polls/my-polls.component';
 import { PollComponent } from './components/poll/poll.component';
+import { PollThumbComponent } from './components/poll-thumb/poll-thumb.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     MyPollsComponent,
-    PollComponent
+    PollComponent,
+    PollThumbComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ const appRoutes: Routes = [
   providers: [
     ValidateService,
     AuthService,
+    PollService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

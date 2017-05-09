@@ -8,6 +8,10 @@ const mongoose = require("mongoose");
 
 const config = require("./config/database");
 
+// Routes
+const users = require("./routes/users");
+const polls = require("./routes/polls");
+
 // Mongoose
 mongoose.connect(config.database);
 mongoose.connection.on("connected", () => {
@@ -16,9 +20,6 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (error) => {
   console.log("Database error:", error);
 });
-
-// Routes
-const users = require("./routes/users");
 
 // Set appp and port
 const app = express();
@@ -37,6 +38,7 @@ require("./config/passport")(passport);
 
 // Routing
 app.use("/users", users);
+app.use("/api", polls);
 
 app.get("/", (req, res) => {
   res.send("Invalid Endpoint");

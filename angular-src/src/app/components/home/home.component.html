@@ -1,8 +1,22 @@
+<!-- Intro -->
 <div class="jumbotron text-center">
-  <h1>Voting App</h1>
-  <p>A simple voting app made as part of the freeCodeCamp curriculum</p>
-  <div>
-    <a class="btn btn-primary" [routerLink]="['/register']">Register</a>
-    <a class="btn btn-default" [routerLink]="['/login']">Login</a>
+  <div *ngIf="!authService.loggedIn()">
+    <h1>Voting App</h1>
+    <p>A simple voting app made as part of the freeCodeCamp curriculum</p>
+    <div>
+      <a class="btn btn-primary" [routerLink]="['/register']">Register</a>
+      <a class="btn btn-default" [routerLink]="['/login']">Login</a>
+    </div>
   </div>
+  
+  <div *ngIf="authService.loggedIn()">
+    <p>
+      Welcome back, you can manage your own polls on the <a [routerLink]="['/mypolls']" class="btn btn-primary">My Polls</a> page.
+    </p>
+  </div>
+</div>
+
+<!-- List of all polls -->
+<div class="row">
+  <app-poll-thumb *ngFor="let poll of pollService.polls; let i = index" [poll]="poll" [routerLink]="['/poll', i]"></app-poll-thumb>
 </div>
