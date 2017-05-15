@@ -1,3 +1,20 @@
-<p>
-  {{ id }}
-</p>
+<div class="row">
+  <div class="header col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+    <h4>{{ pollService.polls[id]?.name }}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <canvas baseChart width="100%"
+          [data]="chartData"
+          [labels]="chartLabels"
+          [chartType]="'doughnut'"
+          [options]="chartOptions"
+          (chartHover)="chartHovered($event)"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+

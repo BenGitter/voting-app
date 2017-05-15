@@ -1,0 +1,14 @@
+.header{
+  background: #18BC9C;
+  margin-bottom: 40px;
+}
+
+.header h4{
+  color: white;
+  font-weight: bold;
+}
+
+canvas{
+  max-width: 300px;
+  margin: auto;
+}
