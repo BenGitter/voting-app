@@ -7,7 +7,22 @@ router.get("/polls", (req, res) => {
     if(err){
       res.json({success: false, msg: "Failed to get polls"});
     }else{
-      res.json({success: true, msg: "Polls retrieved", polls: polls});
+      let _polls = [];
+      polls.forEach((poll, i) => {
+        let votes = [];
+        
+        for(let j = 0; j < poll.options.length; j++){
+          if(poll.votes[j]){
+            votes.push(poll.votes[j].length);
+          }else{
+            votes.push(0);
+          }
+        }
+
+        poll.votes = votes;
+        _polls.push(poll);
+      });
+      res.json({success: true, msg: "Polls retrieved", polls: _polls});
     }
   });
 });
