@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PollService } from '../../services/poll.service';
 import { Router } from '@angular/router';
 
+import { Poll } from '../../poll';
+
 @Component({
   selector: 'app-poll',
   templateUrl: './poll.component.html',
@@ -10,11 +12,12 @@ import { Router } from '@angular/router';
 })
 export class PollComponent implements OnInit, OnDestroy {
   id: number;
+  poll: Poll;
   private sub: any;
 
   // Chart properties
-  chartData:Array<Number>;
-  chartLabels:Array<String>;
+  chartData:Array<Number> = [];
+  chartLabels:Array<String> = [];
   chartOptions:Object = {
     legend: {
       position: "bottom"
@@ -29,18 +32,23 @@ export class PollComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params["id"];
+      this.id = params["id"];
+      console.log(this.id);
 
-      if(this.id === undefined || !this.pollService.pollsAvailable){
+      if(this.id === undefined){
+        console.log("NAVIGATE");
         this.router.navigate(['/']);
         return false;
       }
 
-      if(this.pollService.pollsAvailable){
-        this.chartLabels = this.pollService.polls[this.id].options;
-        this.chartData = this.pollService.polls[this.id].votes;
-      }
+      this.pollService.getPoll(this.id).then(poll => {
+        this.poll = poll; 
+        this.chartLabels = poll.options;
+        this.chartData = poll.votes;
+      });
+
     });
+
   }
 
   ngOnDestroy(){
@@ -49,6 +57,10 @@ export class PollComponent implements OnInit, OnDestroy {
 
   chartHovered(e){
 
+  }
+
+  onVote(option){
+    console.log(option);
   }
 
 }

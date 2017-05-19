@@ -1,20 +1,23 @@
 <div class="row">
   <div class="header col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-    <h4>{{ pollService.polls[id]?.name }}</h4>
+    <h4>{{ poll?.name }}</h4>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        <canvas baseChart width="100%"
+        <canvas *ngIf="poll" baseChart width="100%"
           [data]="chartData"
           [labels]="chartLabels"
           [chartType]="'doughnut'"
           [options]="chartOptions"
           (chartHover)="chartHovered($event)"></canvas>
       </div>
+
+      <div (click)="onVote(option)" class="option-container col-xs-12 col-sm-6">
+        <button class="btn btn-option btn-warning" *ngFor="let option of poll?.options">{{option}}</button>
+      </div>
     </div>
   </div>
 </div>
-

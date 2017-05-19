@@ -12,3 +12,13 @@ canvas{
   max-width: 300px;
   margin: auto;
 }
+
+.btn-option{
+  margin: 4px 5px;
+}
+
+.option-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
