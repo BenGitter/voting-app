@@ -17,13 +17,17 @@ const PollSchema = mongoose.Schema({
   created_by: {
     type: String,
     required: true
+  },
+  created_at: {
+    type: Date,
+    default: Date.now
   }
 });
 
 const Poll = module.exports = mongoose.model('Poll', PollSchema);
 
 module.exports.getAll = function(callback){
-  Poll.find({}, callback);
+  Poll.find({}, null, {sort: {created_at: 1}}, callback);
 }
 
 module.exports.addPoll = function(newPoll, callback){
