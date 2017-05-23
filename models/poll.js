@@ -29,3 +29,11 @@ module.exports.getAll = function(callback){
 module.exports.addPoll = function(newPoll, callback){
   newPoll.save(callback);
 }
+
+module.exports.findPoll = function(id, callback){
+  Poll.findOne({ _id: id }, callback);
+}
+
+module.exports.updatePoll = function(id, newPoll, callback){
+  Poll.update({ _id: id }, newPoll, callback);
+}

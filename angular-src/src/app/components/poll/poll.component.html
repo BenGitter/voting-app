@@ -15,8 +15,8 @@
           (chartHover)="chartHovered($event)"></canvas>
       </div>
 
-      <div (click)="onVote(option)" class="option-container col-xs-12 col-sm-6">
-        <button class="btn btn-option btn-warning" *ngFor="let option of poll?.options">{{option}}</button>
+      <div class="option-container col-xs-12 col-sm-6">
+        <button (click)="onVote(option)" class="btn btn-option btn-warning" *ngFor="let option of poll?.options">{{option}}</button>
       </div>
     </div>
   </div>

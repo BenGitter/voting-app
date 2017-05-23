@@ -36,19 +36,24 @@ export class PollComponent implements OnInit, OnDestroy {
       console.log(this.id);
 
       if(this.id === undefined){
-        console.log("NAVIGATE");
         this.router.navigate(['/']);
         return false;
       }
 
-      this.pollService.getPoll(this.id).then(poll => {
-        this.poll = poll; 
-        this.chartLabels = poll.options;
-        this.chartData = poll.votes;
-      });
+      this.getPoll();
 
     });
 
+  }
+
+  getPoll(){
+    this.pollService.getPoll(this.id).then(poll => {
+      this.poll = poll; 
+      this.chartLabels = poll.options;
+      this.chartData = poll.votes;
+
+      console.log(this.poll);
+    });    
   }
 
   ngOnDestroy(){
@@ -60,7 +65,10 @@ export class PollComponent implements OnInit, OnDestroy {
   }
 
   onVote(option){
-    console.log(option);
+    console.log(this.id);
+    this.pollService.submitVote(this.id, option, () => {
+      this.getPoll();
+    });
   }
 
 }

@@ -14,10 +14,12 @@ export class PollService {
   pollPromise:any;
 
   constructor(private http:Http) {
-    this.pollPromise = this.getPolls().publishReplay().refCount();; 
+    this.pollPromise = this.getPolls().publishReplay().refCount(); 
     this.pollPromise.subscribe(data => {
       this.polls = data.polls;
       this.pollsAvailable = true;
+
+      console.log(this.polls);
     });
   }
 
@@ -30,21 +32,41 @@ export class PollService {
   }
 
   getPoll(id){
-    let _pollPromise = this.pollPromise;
+    let self = this;
+
     return new Promise<Poll>(
       function(resolve, reject){
-        _pollPromise.subscribe(data => {
-          data.polls.forEach((poll, i) => {
-            if(poll._id = id){
+        if(self.pollsAvailable){
+          self.polls.forEach((poll, i) => {
+            if(poll._id == id){
               resolve(poll);
             }
           });
-
-          reject();
-        });
+        }else{
+          self.pollPromise.subscribe(data => {
+            data.polls.forEach((poll, i) => {
+              if(poll._id == id){
+                resolve(poll);
+              }
+            });
+            reject();
+          });
+        }
       }
     )
     
+  }
+
+  submitVote(id, option, callback){
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    this.http.put("/api/poll", {id, option} , {headers: headers})
+      .map(res => res.json())
+      .subscribe(data => {
+        this.polls = data.polls; 
+        callback();
+      });
   }
 
 }
