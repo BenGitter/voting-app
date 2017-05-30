@@ -5,9 +5,18 @@
   border: 1px solid #DDD;  
   border-radius: 2px;
   background: #FAFAFA;
-  height: 60px;
   cursor: pointer;
+}
+
+.poll .title{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 60px;
+}
+
+.poll .result{
+  border-top: 1px solid #DDD;
+  padding: 5px;
+  
 }

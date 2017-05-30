@@ -1,3 +1,11 @@
-<p>
-  my-polls works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Your polls</h3>
+    <button [routerLink]="['/new-poll']" class="btn btn-success">New poll</button>
+  </div>
+</div>
+
+<!-- List of personal polls -->
+<div class="row">
+  <app-poll-thumb *ngFor="let poll of pollService.polls | createdBy:authService.user.username; let i = index" [poll]="poll" [showDetails]="true" [routerLink]="['/poll', poll._id]"></app-poll-thumb>
+</div>

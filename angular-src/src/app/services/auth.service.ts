@@ -9,7 +9,11 @@ export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http:Http) { }
+  constructor(private http:Http) { 
+    if(this.loggedIn()){
+      this.loadUserData();
+    }
+  }
 
   registerUser(user){
     let headers = new Headers();
@@ -52,6 +56,10 @@ export class AuthService {
 
     this.authToken = token;
     this.user = user;
+  }
+
+  loadUserData(){
+    this.user = JSON.parse(localStorage.getItem("user"));
   }
 
   logout(){

@@ -1,5 +1,10 @@
 <div class="col-xs-12 col-sm-6 col-md-4">
-  <div class="poll btn-link">
-    {{ poll.name }}
+  <div class="poll">
+    <div class="title btn-link">
+      {{ poll.name }}
+    </div>
+    <div *ngIf="showDetails" class="result">
+      Most popular choice: &nbsp;&nbsp; {{ popularChoice.option }} ({{ popularChoice.percentage }} &#37;)
+    </div>
   </div>
 </div>
