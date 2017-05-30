@@ -64,6 +64,10 @@ export class PollService {
     this.http.put("/api/poll", {id, option} , {headers: headers})
       .map(res => res.json())
       .subscribe(data => {
+        if(data.msg == "Already voted"){
+          console.log("You already voted!");
+          return true;
+        }
         this.polls = data.polls; 
         callback();
       });

@@ -49,13 +49,28 @@ router.put("/poll", (req, res) => {
   let id = req.body.id;
   let option = req.body.option;
 
+  let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
   Poll.findPoll(id, (err, poll) => {
     if(err) res.json({success: false, msg: "Error"});
 
     let index = poll.options.indexOf(option);
     if(index < 0) res.json({success: false, msg: "Error"});
 
-    poll.votes[index].push("TEST");
+    let double = false;
+    poll.votes.forEach((val, i) => {
+      if(val.indexOf(ip) >= 0){
+        double = true;
+      }
+    });
+
+    if(double){
+      res.json({success: true, msg: "Already voted"});
+      return true;
+    }else{
+      poll.votes[index].push(ip);
+    }
+    
 
     Poll.updatePoll(id, poll, (err, poll) => {
       if(err) res.json({success: false, msg: "Error"});
