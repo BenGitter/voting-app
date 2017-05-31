@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { Poll } from '../poll';
 
@@ -13,7 +14,10 @@ export class PollService {
   polls:Array<any> = [];
   pollPromise:any;
 
-  constructor(private http:Http) {
+  constructor(
+    private http:Http,
+    private flashMessage:FlashMessagesService
+  ) {
     this.pollPromise = this.getPolls().publishReplay().refCount(); 
     this.pollPromise.subscribe(data => {
       this.polls = data.polls;
@@ -73,7 +77,7 @@ export class PollService {
       .map(res => res.json())
       .subscribe(data => {
         if(data.msg == "Already voted"){
-          console.log("You already voted!");
+          this.flashMessage.show("You already voted", {cssClass: "alert-warning", timeout: 3000 });
           return true;
         }
         this.polls = data.polls; 
