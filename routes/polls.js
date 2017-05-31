@@ -40,7 +40,7 @@ router.post("/poll", (req, res) => {
       console.log(err);
       res.json({success: false, msg: "Failed to add poll"});
     }else{
-      res.json({success: true, msg: "Poll added"});
+      res.json({success: true, msg: "Poll added", poll: poll});
     }
   });
 });

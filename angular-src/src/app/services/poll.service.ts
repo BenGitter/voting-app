@@ -23,6 +23,14 @@ export class PollService {
     });
   }
 
+  postPoll(poll){
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    return this.http.post("/api/poll", poll, {headers:headers})
+      .map(res => res.json());
+  }
+
   getPolls(){
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
