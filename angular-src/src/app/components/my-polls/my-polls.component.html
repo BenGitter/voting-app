@@ -7,5 +7,5 @@
 
 <!-- List of personal polls -->
 <div class="row">
-  <app-poll-thumb *ngFor="let poll of pollService.polls | createdBy:authService.user.username; let i = index" [poll]="poll" [showDetails]="true" [routerLink]="['/poll', poll._id]"></app-poll-thumb>
+  <app-poll-thumb *ngFor="let poll of pollService.polls | createdBy:authService.user.username; let i = index" [poll]="poll" [showDetails]="true"></app-poll-thumb>
 </div>

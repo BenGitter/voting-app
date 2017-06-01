@@ -27,6 +27,14 @@ export class PollService {
     });
   }
 
+  deletePoll(id){
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    return this.http.delete("/api/poll/"+id, {headers:headers})
+      .map(res => res.json());
+  }
+
   postPoll(poll){
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
@@ -68,6 +76,13 @@ export class PollService {
     )
     
   }
+
+  removePoll(id){
+    this.polls = this.polls.filter((el, i) => {
+      if(el._id == id) console.log("MATCH");
+      return el._id !== id;
+    });
+  } 
 
   submitVote(id, option, callback){
     let headers = new Headers();

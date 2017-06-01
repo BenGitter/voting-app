@@ -27,6 +27,19 @@ router.get("/polls", (req, res) => {
   });
 });
 
+router.delete("/poll/:id", (req, res) => {
+  let id = req.params.id;
+  
+  Poll.deletePoll(id, (err) => {
+    if(err){
+      res.json({success: false, msg: "An error occurred"});
+    }else{
+      res.json({success: true, msg: "Poll deleted"});
+    }   
+  });
+
+});
+
 router.post("/poll", (req, res) => {
   let newPoll = new Poll({
     name: req.body.name,

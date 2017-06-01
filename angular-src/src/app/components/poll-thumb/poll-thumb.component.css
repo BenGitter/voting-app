@@ -5,7 +5,6 @@
   border: 1px solid #DDD;  
   border-radius: 2px;
   background: #FAFAFA;
-  cursor: pointer;
 }
 
 .poll .title{
@@ -13,10 +12,23 @@
   flex-direction: column;
   justify-content: center;
   height: 60px;
+  cursor: pointer;
 }
 
 .poll .result{
   border-top: 1px solid #DDD;
   padding: 5px;
-  
+}
+
+.material-icons{
+  float: right;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.material-icons.link:hover{
+  color: #C87F0A;
+}
+.material-icons.delete:hover{
+  color: #D62C1A;
 }

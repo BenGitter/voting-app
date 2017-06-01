@@ -18,5 +18,5 @@
 
 <!-- List of all polls -->
 <div class="row">
-  <app-poll-thumb *ngFor="let poll of pollService.polls; let i = index" [poll]="poll" [routerLink]="['/poll', poll._id]"></app-poll-thumb>
+  <app-poll-thumb *ngFor="let poll of pollService.polls; let i = index" [poll]="poll"></app-poll-thumb>
 </div>

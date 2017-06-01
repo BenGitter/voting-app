@@ -41,3 +41,7 @@ module.exports.findPoll = function(id, callback){
 module.exports.updatePoll = function(id, newPoll, callback){
   Poll.update({ _id: id }, newPoll, callback);
 }
+
+module.exports.deletePoll = function(id, callback){
+  Poll.findByIdAndRemove(id, callback);
+}
