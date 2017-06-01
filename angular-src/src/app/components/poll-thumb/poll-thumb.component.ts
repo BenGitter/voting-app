@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { Poll } from '../../poll';
 import { PollService } from '../../services/poll.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -13,13 +14,18 @@ export class PollThumbComponent implements OnInit {
   @Input() showDetails:boolean = false;
   popularChoice:{option, percentage} = {option: "", percentage: 1};
 
+  pollLink:string;
+  isCopied:boolean = false;
+
   constructor(
     private pollService:PollService,
-    private flashMessage:FlashMessagesService
+    private flashMessage:FlashMessagesService,
+    @Inject(DOCUMENT) private document: any
   ) { }
 
   ngOnInit() {
     this.getPopularChoice();
+    this.pollLink = this.document.location.origin  + "/poll/" + this.poll._id;
   }
 
   getPopularChoice(){

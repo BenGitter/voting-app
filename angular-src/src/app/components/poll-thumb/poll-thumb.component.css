@@ -18,6 +18,12 @@
 .poll .result{
   border-top: 1px solid #DDD;
   padding: 5px;
+  padding-bottom: 10px;
+}
+
+.result .choice{
+  position: relative;
+  top: 5px;
 }
 
 .material-icons{
@@ -31,4 +37,33 @@
 }
 .material-icons.delete:hover{
   color: #D62C1A;
+}
+
+input{
+  position: fixed;
+  width: 0px;
+  opacity: 0;
+}
+
+.copied{
+  color: #C87F0A;
+}
+.copied::after{
+  content: "COPIED!";
+  background: black;
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 60px;
+  right: 55px;
+  padding: 5px 6px 7px 6px;
+  border-radius: 2px;
+  animation: hide .5s forwards;
+  animation-delay: 1s;
+}
+
+@keyframes hide{
+  100%{
+    opacity: 0;
+  }
 }

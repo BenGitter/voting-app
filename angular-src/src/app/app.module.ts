@@ -10,6 +10,7 @@ import { PollService } from './services/poll.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { CreatedByPipe } from './created-by.pipe';
 
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
-    ChartsModule
+    ChartsModule,
+    ClipboardModule
   ],
   providers: [
     ValidateService,
