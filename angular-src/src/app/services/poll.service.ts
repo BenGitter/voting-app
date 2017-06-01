@@ -69,9 +69,9 @@ export class PollService {
                 resolve(poll);
               }
             });
-            reject();
           });
         }
+        reject();
       }
     )
     

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PollService } from '../../services/poll.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { Poll } from '../../poll';
 
@@ -27,6 +28,7 @@ export class PollComponent implements OnInit, OnDestroy {
   constructor(
     private route:ActivatedRoute,
     private router:Router,
+    private flashMessage:FlashMessagesService,
     private pollService:PollService  
   ) { }
 
@@ -51,8 +53,9 @@ export class PollComponent implements OnInit, OnDestroy {
       this.poll = poll; 
       this.chartLabels = poll.options;
       this.chartData = poll.votes;
-
-      console.log(this.poll);
+    }, error => {
+      this.router.navigate(['/']);
+      this.flashMessage.show("Poll not found", {cssClass: "alert-danger", timeout: 3000 });
     });    
   }
 
