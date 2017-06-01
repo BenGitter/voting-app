@@ -4,14 +4,14 @@
       {{ poll.name }}
     </div>
     <div *ngIf="showDetails" class="result">
-      <span class="choice">
-        Most popular choice: &nbsp;&nbsp; {{ popularChoice.option }} ({{ popularChoice.percentage }} &#37;)
-      </span>
-      <span>
+      <div class="choice">
+        Top choice: &nbsp;&nbsp; {{ popularChoice.option }} ({{ popularChoice.percentage }} &#37;)
+      </div>
+      <div class="icons">
         <i (click)="onDeletePoll($event)" class="material-icons delete">delete_forever</i>
         <i [class.copied]="isCopied" (click)="isCopied = true" class="material-icons link" [ngxClipboard]="pollInput">link</i>
         <input #pollInput type="text" [(ngModel)]="pollLink">
-      </span>
+      </div>
     </div>
   </div>
 </div>

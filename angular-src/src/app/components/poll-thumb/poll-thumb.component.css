@@ -19,11 +19,21 @@
   border-top: 1px solid #DDD;
   padding: 5px;
   padding-bottom: 10px;
+  height: 35px;
 }
 
 .result .choice{
-  position: relative;
-  top: 5px;
+  margin-top: 5px;
+  width: calc(100% - 100px);
+  overflow: hidden;
+  float: left;
+  overflow: hidden;
+  height: 20px;
+}
+
+.result .icons{
+  width: 100px;
+  float: right;
 }
 
 .material-icons{
