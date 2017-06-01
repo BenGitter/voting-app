@@ -60,7 +60,7 @@ export class NewPollComponent implements OnInit {
     // Post new poll
     this.pollService.postPoll(poll).subscribe(data => {
       if(data.success){
-        this.pollService.polls.push(data.poll);
+        this.pollService.polls.unshift(data.poll);
         this.flashMessage.show("Poll added", {cssClass: "alert-success", timeout: 3000 });
         this.router.navigate(['/poll', data.poll._id]);
       }else{

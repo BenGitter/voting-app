@@ -27,7 +27,7 @@ const PollSchema = mongoose.Schema({
 const Poll = module.exports = mongoose.model('Poll', PollSchema);
 
 module.exports.getAll = function(callback){
-  Poll.find({}, null, {sort: {created_at: 1}}, callback);
+  Poll.find({}, null, {sort: {created_at: -1}}, callback);
 }
 
 module.exports.addPoll = function(newPoll, callback){
