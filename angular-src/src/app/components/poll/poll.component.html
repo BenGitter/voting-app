@@ -18,6 +18,11 @@
       <div class="option-container col-xs-12 col-sm-6">
         <button (click)="onVote(option)" class="btn btn-option btn-warning" *ngFor="let option of poll?.options">{{option}}</button>
       </div>
+
+      <div class="add-option-container col-xs-12 col-sm-6">
+        <input #optionInput type="text" id="optionInput">
+        <button #optionButton *ngIf="authService.loggedIn()" (click)="onAddOption(optionInput, optionButton)" class="btn btn-info btn-option">Add option</button>
+      </div>
     </div>
   </div>
 </div>

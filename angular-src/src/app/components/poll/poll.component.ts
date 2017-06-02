@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PollService } from '../../services/poll.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthService } from '../../services/auth.service';
 
 import { Poll } from '../../poll';
 
@@ -29,7 +30,8 @@ export class PollComponent implements OnInit, OnDestroy {
     private route:ActivatedRoute,
     private router:Router,
     private flashMessage:FlashMessagesService,
-    private pollService:PollService  
+    private pollService:PollService,
+    private authService:AuthService  
   ) { }
 
   ngOnInit() {
@@ -46,6 +48,29 @@ export class PollComponent implements OnInit, OnDestroy {
 
     });
 
+  }
+
+  onAddOption(input:HTMLInputElement, button:HTMLButtonElement){
+    if(button.innerHTML == "+"){
+      let option = input.value;
+      if(option){
+        this.pollService.addOption(this.poll._id, option).subscribe(data => {
+          if(data.success){
+            this.poll.votes.push(0);
+            this.poll.options.push(option);
+            this.chartLabels = this.poll.options;
+            this.chartData = this.poll.votes;
+          }
+        })
+        button.innerHTML = "Add option";
+        input.value = "";
+        input.style.display = "none";
+      }
+    }else{
+      button.innerHTML = "+";
+      input.style.display = "block";
+    }
+    
   }
 
   getPoll(){

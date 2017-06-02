@@ -51,6 +51,14 @@ export class PollService {
       .map(res => res.json());
   }
 
+  addOption(id, option){
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+
+    return this.http.post("/api/poll/option", {id, option}, {headers:headers})
+      .map(res => res.json());
+  }
+
   getPoll(id){
     let self = this;
 

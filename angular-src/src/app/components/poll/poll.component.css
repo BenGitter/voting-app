@@ -21,3 +21,22 @@ canvas{
   display: flex;
   flex-wrap: wrap;
 }
+
+.add-option-container{
+  padding: 20px;
+}
+
+#optionInput{
+  width: calc(100% - 60px);
+  float: left;
+  display: none;
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.add-option-container button{
+  float: right;
+  position: relative;
+  top: -5px;
+}

@@ -58,6 +58,28 @@ router.post("/poll", (req, res) => {
   });
 });
 
+router.post("/poll/option", (req, res) => {
+  let id = req.body.id;
+  let option = req.body.option;
+
+  Poll.findPoll(id, (err, poll) => {
+    if(err) res.json({success: false, msg: "Error"});
+
+    if(poll){
+      poll.votes.push([]);
+      poll.options.push(option);
+
+      Poll.updatePoll(id, poll, (err, info) => {
+        if(err) res.json({success: false, msg: "Error"});
+        
+        res.json({success: true, msg: "Option added", poll: poll});
+      });
+    }else{
+      res.json({success: false, msg: "Error"});
+    }
+  });
+});
+
 router.put("/poll", (req, res) => {
   let id = req.body.id;
   let option = req.body.option;
