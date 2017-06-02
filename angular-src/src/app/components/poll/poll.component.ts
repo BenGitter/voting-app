@@ -31,7 +31,7 @@ export class PollComponent implements OnInit, OnDestroy {
     private router:Router,
     private flashMessage:FlashMessagesService,
     private pollService:PollService,
-    private authService:AuthService  
+    public authService:AuthService  
   ) { }
 
   ngOnInit() {

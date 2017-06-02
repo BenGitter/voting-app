@@ -10,8 +10,8 @@ import { AuthService } from '../../services/auth.service';
 export class MyPollsComponent implements OnInit {
 
   constructor(
-    private pollService:PollService,
-    private authService:AuthService  
+    public pollService:PollService,
+    public authService:AuthService  
   ) { }
 
   ngOnInit() {
