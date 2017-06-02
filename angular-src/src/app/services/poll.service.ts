@@ -62,6 +62,7 @@ export class PollService {
               resolve(poll);
             }
           });
+          reject();
         }else{
           self.pollPromise.subscribe(data => {
             data.polls.forEach((poll, i) => {
@@ -69,9 +70,9 @@ export class PollService {
                 resolve(poll);
               }
             });
+            reject();
           });
         }
-        reject();
       }
     )
     
