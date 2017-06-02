@@ -68,7 +68,7 @@ export class NewPollComponent implements OnInit {
       }
     })
 
-    console.log(poll);
+    // console.log(poll);
 
   }
 

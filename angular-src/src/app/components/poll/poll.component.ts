@@ -37,7 +37,7 @@ export class PollComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.id = params["id"];
-      console.log(this.id);
+      // console.log(this.id);
 
       if(this.id === undefined){
         this.router.navigate(['/']);
@@ -93,7 +93,7 @@ export class PollComponent implements OnInit, OnDestroy {
   }
 
   onVote(option){
-    console.log(this.id);
+    // console.log(this.id);
     this.pollService.submitVote(this.id, option, () => {
       this.getPoll();
     });

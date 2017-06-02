@@ -23,7 +23,7 @@ export class PollService {
       this.polls = data.polls;
       this.pollsAvailable = true;
 
-      console.log(this.polls);
+      // console.log(this.polls);
     });
   }
 
@@ -88,7 +88,7 @@ export class PollService {
 
   removePoll(id){
     this.polls = this.polls.filter((el, i) => {
-      if(el._id == id) console.log("MATCH");
+      // if(el._id == id) console.log("MATCH");
       return el._id !== id;
     });
   } 

@@ -29,7 +29,7 @@ export class PollThumbComponent implements OnInit {
   }
 
   getPopularChoice(){
-    console.log(this.poll);
+    // console.log(this.poll);
     this.popularChoice.percentage = Math.round(Math.max(...this.poll.votes)/this.poll.votes.reduce((acc:number, val:number) => {
       return acc += val;
     })*100);
